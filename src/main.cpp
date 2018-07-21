@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+#if 0
   Coord a (1,2,3);
   Coord b (4,5,6);
 
@@ -15,7 +16,6 @@ int main()
 
   Coord c(a+b);
   c.dump();
-#if 0
   dist(a,b).dump();
   dist(b,a).dump();
   Coord distab = dist(a,b);
@@ -96,25 +96,27 @@ int main()
   {
     cout << "r2 and r3 are equal" << endl;
   }
-#endif
   Coord my(0,1,0);
   my.dump();
+#endif
 
   cout << endl << " Generate test file " << endl;
   CommandList myCommands;
 
   std::shared_ptr<Command> flip(new Flip);
   std::shared_ptr<Command> wait(new Wait);
-  std::shared_ptr<Command> smove(new SMove(Coord(0,1,0)));
+  std::shared_ptr<Command> smove(new SMove(Coord(-15,0,0)));
   std::shared_ptr<Command> fill(new Fill(Coord(0,-1,0)));
   std::shared_ptr<Command> fill2(new Fill(Coord(1,0,0)));
   std::shared_ptr<Command> halt(new Halt);
+  std::shared_ptr<Command> lmove(new LMove(Coord(0,0,-1),Coord(0,2,0)));
 
   myCommands.addCommand(flip);
   myCommands.addCommand(wait);
   for (int cnt = 0; cnt < 10; cnt++)
   {
     myCommands.addCommand(smove);
+    myCommands.addCommand(lmove);
     myCommands.addCommand(fill);
     myCommands.addCommand(fill2);
   }

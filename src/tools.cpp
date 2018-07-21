@@ -95,7 +95,13 @@ Coord::a()
 int
 Coord::i()
 {
-  return mlen();
+  if (0 != x) {
+    return x;
+  }
+  if (0 != y) {
+    return y;
+  }
+  return z;
 }
 
 int

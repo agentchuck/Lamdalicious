@@ -129,10 +129,7 @@ CommandList::dumpToFile(const char *filename)
   {
     std::pair<int, uint16_t> encData = (*it)->encode();
     uint16_t data = encData.second;
-#if 0
-    char data[4] = {255, 254, 253, 252};
-    outFile.write(data, 4);
-#endif
+
     if (encData.first == 1)
     {
       outFile.write((char*)&data, 1);
