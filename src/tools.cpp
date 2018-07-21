@@ -128,6 +128,18 @@ Coord::operator==(Coord const &rhs)
           (z == rhs.z));
 }
 
+Coord 
+Coord::operator+(Coord const &rhs)
+{
+  Coord retCoord(rhs);
+
+  retCoord.x += x;
+  retCoord.y += y;
+  retCoord.z += z;
+
+  return retCoord;
+}
+
 
 Region::Region() :
   c1(0,0,0),

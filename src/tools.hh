@@ -41,6 +41,7 @@ class Coord {
     int nd_enc();
 
     bool operator==(Coord const &rhs);
+    Coord operator+(Coord const &rhs);
 
     void dump();
 };

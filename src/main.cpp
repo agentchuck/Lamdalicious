@@ -5,15 +5,17 @@
 
 using namespace std;
 
-int main(int argc, char **argv)
+int main()
 {
-#if 0
   Coord a (1,2,3);
   Coord b (4,5,6);
 
   a.dump();
   b.dump();
 
+  Coord c(a+b);
+  c.dump();
+#if 0
   dist(a,b).dump();
   dist(b,a).dump();
   Coord distab = dist(a,b);
