@@ -20,7 +20,7 @@ Coord::Coord(Coord const &rhs)
 void
 Coord::dump()
 {
-  std::cout << x << ", " << y << ", " << z << std::endl;
+  std::cout << x << ", " << y << ", " << z << " a:" << a() << " i:" << i() << std::endl;
 }
 
 int

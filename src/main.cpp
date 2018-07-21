@@ -1,11 +1,13 @@
 #include <iostream>
 
+#include "commands.hh"
 #include "tools.hh"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
+#if 0
   Coord a (1,2,3);
   Coord b (4,5,6);
 
@@ -92,6 +94,31 @@ int main(int argc, char **argv)
   {
     cout << "r2 and r3 are equal" << endl;
   }
+#endif
+  Coord my(0,1,0);
+  my.dump();
+
+  cout << endl << " Generate test file " << endl;
+  CommandList myCommands;
+
+  std::shared_ptr<Command> flip(new Flip);
+  std::shared_ptr<Command> wait(new Wait);
+  std::shared_ptr<Command> smove(new SMove(Coord(0,1,0)));
+  std::shared_ptr<Command> fill(new Fill(Coord(0,-1,0)));
+  std::shared_ptr<Command> fill2(new Fill(Coord(1,0,0)));
+  std::shared_ptr<Command> halt(new Halt);
+
+  myCommands.addCommand(flip);
+  myCommands.addCommand(wait);
+  for (int cnt = 0; cnt < 10; cnt++)
+  {
+    myCommands.addCommand(smove);
+    myCommands.addCommand(fill);
+    myCommands.addCommand(fill2);
+  }
+  myCommands.addCommand(flip);
+  //myCommands.addCommand(halt);
+  myCommands.dumpToFile("test.nbt");
 
   return 0;
 }

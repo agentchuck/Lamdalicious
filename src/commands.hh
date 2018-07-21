@@ -2,6 +2,8 @@
 #define COMMANDS_HH
 
 #include <cstdint>
+#include <list>
+#include <memory>
 #include <utility>
 #include "tools.hh"
 
@@ -71,5 +73,20 @@ class Fill : public Command
     virtual std::pair<int, uint16_t> encode();
 };
 
+class CommandList
+{
+  private:
+    std::list< std::shared_ptr<Command> > commands;
+  public:
+    CommandList();
+    ~CommandList();
+
+
+    void clear();
+
+    void addCommand(std::shared_ptr<Command> command);
+
+    void dumpToFile(const char *filename);
+};
 
 #endif
