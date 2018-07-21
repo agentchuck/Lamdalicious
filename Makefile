@@ -18,7 +18,7 @@ OFILES := $(OBJFILES:%=obj/%.o)
 BINFILE = play_icfp2018
 
 COMMONFLAGS = -Wall -Wextra -pedantic -Wno-sign-compare
-LDFLAGS = -lboost_program_options
+LDFLAGS = 
 
 ifdef DEBUG
 	COMMONFLAGS := $(COMMONFLAGS) -g
