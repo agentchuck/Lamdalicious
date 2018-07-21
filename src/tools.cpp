@@ -1,4 +1,5 @@
 #include "tools.hh"
+#include <algorithm>
 #include <iostream>
 
 Coord::Coord()

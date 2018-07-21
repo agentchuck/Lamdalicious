@@ -4,6 +4,7 @@
 #include <fstream>
 #include <ios>
 #include <iostream>
+#include <stdexcept>
 #include <utility>
 
 Command::~Command() {}
@@ -29,6 +30,10 @@ Flip::encode()
 SMove::SMove(Coord const & ld_) :
   ld(ld_)
 {
+  if (!ld.lld())
+  {
+    throw std::runtime_error("Not a valid long linear distance!");
+  }
 }
 
 std::pair<int, uint16_t>

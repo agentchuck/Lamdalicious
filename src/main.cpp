@@ -99,6 +99,7 @@ int main()
   Coord my(0,1,0);
   my.dump();
 #endif
+  //std::shared_ptr<Command> smoveCrash(new SMove(Coord(3,1,0)));
 
   cout << endl << " Generate test file " << endl;
   CommandList myCommands;
