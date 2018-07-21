@@ -83,5 +83,15 @@ int main(int argc, char **argv)
   Region r3(Coord(1,5,3), Coord(4,2,6));
   r3.dump();
 
+  if (r1 == r2) 
+  {
+    cout << "r1 and r2 are equal" << endl;
+  }
+
+  if (r2 == r3) 
+  {
+    cout << "r2 and r3 are equal" << endl;
+  }
+
   return 0;
 }

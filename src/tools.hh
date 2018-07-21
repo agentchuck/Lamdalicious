@@ -9,8 +9,8 @@ class Coord {
     int z;
 
     Coord();
+    Coord(Coord const &rhs);
     Coord(int x_, int y_, int z_); 
-    void dump();
 
     // Chessboard length
     int clen();
@@ -34,6 +34,15 @@ class Coord {
     // have the value -1 or 1 and the other components have the value 0. There
     // are exactly 18 near Coordinate differences.
     bool nd();
+
+    // For encoding, get the axis and integer (distance)
+    int a();
+    int i();
+    int nd_enc();
+
+    bool operator==(Coord const &rhs);
+
+    void dump();
 };
 
 bool adj(Coord const& from, Coord const& to);
@@ -45,10 +54,14 @@ class Region {
     Coord c2;
 
     Region();
-    Region(Coord a_, Coord b_);
+    Region(Coord const& a_, Coord const& b_);
+
+    int dimension();
+
+    bool contains(Coord const &coord);
+    bool operator==(Region const &rhs);
 
     void dump();
-
 };
 
 #endif

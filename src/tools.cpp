@@ -12,6 +12,11 @@ Coord::Coord(int x_, int y_, int z_)
 {
 }
 
+Coord::Coord(Coord const &rhs)
+  : x(rhs.x), y(rhs.y), z(rhs.z)
+{
+}
+
 void
 Coord::dump()
 {
@@ -75,6 +80,31 @@ Coord::nd()
   return false;
 }
 
+int
+Coord::a()
+{
+  if (0 != x) {
+    return 1;
+  }
+  if (0 != y) {
+    return 2;
+  }
+  return 3;
+}
+
+int
+Coord::i()
+{
+  return mlen();
+}
+
+int
+Coord::nd_enc()
+{
+  //  (dx + 1) * 9 + (dy + 1) * 3 + (dz + 1).
+  return ((x+1)*9) + ((y+1)*3) + (z+1);
+}
+
 bool adj(Coord const& from, Coord const& to)
 {
   return (dist(from, to).mlen() == 1);
@@ -90,6 +120,14 @@ Coord dist(Coord const& from, Coord const& to)
   return ret;
 }
 
+bool 
+Coord::operator==(Coord const &rhs)
+{
+  return ((x == rhs.x) &&
+          (y == rhs.y) &&
+          (z == rhs.z));
+}
+
 
 Region::Region() :
   c1(0,0,0),
@@ -97,10 +135,39 @@ Region::Region() :
 {
 }
 
-Region::Region(Coord a_, Coord b_) :
+Region::Region(Coord const& a_, Coord const& b_) :
   c1(std::min(a_.x, b_.x), std::min(a_.y, b_.y), std::min(a_.z, b_.z)),
   c2(std::max(a_.x, b_.x), std::max(a_.y, b_.y), std::max(a_.z, b_.z))
 {
+}
+
+int
+Region::dimension()
+{
+  int ret = 0;
+  if (c1.x != c2.x) ret++;
+  if (c1.y != c2.y) ret++;
+  if (c1.z != c2.z) ret++;
+
+  return ret;
+}
+
+bool
+Region::contains(Coord const &coord)
+{
+  return ((c1.x <= coord.x) &&
+          (c2.x >= coord.x) &&
+          (c1.y <= coord.y) &&
+          (c2.y >= coord.y) &&
+          (c1.z <= coord.z) &&
+          (c2.z >= coord.z));
+}
+
+bool 
+Region::operator==(Region const &rhs)
+{
+  return ((c1 == rhs.c1) &&
+          (c2 == rhs.c2));
 }
 
 void
