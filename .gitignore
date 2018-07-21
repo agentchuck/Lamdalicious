@@ -1,3 +1,7 @@
+*.swp
+play_icfp2018
+*.dep
+*nfs*
 # Prerequisites
 *.d
 
