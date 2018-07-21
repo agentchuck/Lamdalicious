@@ -96,6 +96,20 @@ Fill::encode()
   return std::make_pair(1, temp);
 }
 
+Fission::Fission(Coord const & ld_, uint8_t m_) :
+  ld(ld_), m(m_)
+{
+}
+
+std::pair<int, uint16_t>
+Fission::encode()
+{
+  uint16_t temp = (((ld.nd_enc() << 11) & 0xf800) |
+                   ((0x05 << 8) & 0x0f00) |
+                   (m & 0x00ff));
+  return std::make_pair(2, temp);
+}
+
 
 
 CommandList::CommandList()

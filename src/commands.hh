@@ -73,6 +73,15 @@ class Fill : public Command
     virtual std::pair<int, uint16_t> encode();
 };
 
+class Fission : public Command
+{
+  public:
+    Coord ld;
+    uint8_t m;
+    Fission(Coord const & ld_, uint8_t m_);
+    virtual std::pair<int, uint16_t> encode();
+};
+
 class CommandList
 {
   private:

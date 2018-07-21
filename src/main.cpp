@@ -105,20 +105,27 @@ int main()
 
   std::shared_ptr<Command> flip(new Flip);
   std::shared_ptr<Command> wait(new Wait);
-  std::shared_ptr<Command> smove(new SMove(Coord(-15,0,0)));
+  std::shared_ptr<Command> smove(new SMove(Coord(3,0,0)));
   std::shared_ptr<Command> fill(new Fill(Coord(0,-1,0)));
   std::shared_ptr<Command> fill2(new Fill(Coord(1,0,0)));
   std::shared_ptr<Command> halt(new Halt);
-  std::shared_ptr<Command> lmove(new LMove(Coord(0,0,-1),Coord(0,2,0)));
+  std::shared_ptr<Command> lmove(new LMove(Coord(-3,0,0),Coord(0,1,0)));
+  std::shared_ptr<Command> fission(new Fission(Coord(0,0,1),6));
+  std::shared_ptr<Command> fusionS(new FusionS(Coord(0,0,-1)));
+  std::shared_ptr<Command> fusionP(new FusionP(Coord(0,0,1)));
 
   myCommands.addCommand(flip);
+
   myCommands.addCommand(wait);
   for (int cnt = 0; cnt < 10; cnt++)
   {
+    myCommands.addCommand(fission);
+    myCommands.addCommand(fusionP);
+    myCommands.addCommand(fusionS);
     myCommands.addCommand(smove);
+    myCommands.addCommand(fill2);
     myCommands.addCommand(lmove);
     myCommands.addCommand(fill);
-    myCommands.addCommand(fill2);
   }
   myCommands.addCommand(flip);
   //myCommands.addCommand(halt);
