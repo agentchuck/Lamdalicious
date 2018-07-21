@@ -6,16 +6,16 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-  coord a (1,2,3);
-  coord b (4,5,6);
+  Coord a (1,2,3);
+  Coord b (4,5,6);
 
   a.dump();
   b.dump();
 
   dist(a,b).dump();
   dist(b,a).dump();
-  coord distab = dist(a,b);
-  coord distba = dist(b,a);
+  Coord distab = dist(a,b);
+  Coord distba = dist(b,a);
 
   cout << endl << "Manhattan length" << endl;
   cout << "a: " << a.mlen() << endl;
@@ -23,11 +23,11 @@ int main(int argc, char **argv)
   cout << "a-b: " << distba.mlen() << endl;
 
   cout << endl << "Adjacent check" << endl;
-  coord adja(1,2,3);
+  Coord adja(1,2,3);
 
   for (int idx = 0; idx < 5; idx++)
   {
-    coord ca(idx,2,3);
+    Coord ca(idx,2,3);
     adja.dump();
     ca.dump();
     if (adj(adja, ca))
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     }
     cout << endl;
 
-    coord cb(1, idx, 3);
+    Coord cb(1, idx, 3);
     adja.dump();
     cb.dump();
     if (adj(adja, cb))
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     }
     cout << endl;
 
-    coord cc(1,2,idx);
+    Coord cc(1,2,idx);
     adja.dump();
     cc.dump();
     if (adj(adja, cc))
@@ -62,15 +62,26 @@ int main(int argc, char **argv)
 
 
   cout << endl << "Chessboard length" << endl;
-  coord cha(10,20,30);
-  coord chb(19,-32,22);
-  coord chc(-19,18,-17);
+  Coord cha(10,20,30);
+  Coord chb(19,-32,22);
+  Coord chc(-19,18,-17);
   cha.dump();
   cout << cha.clen() << endl;
   chb.dump();
   cout << chb.clen() << endl;
   chc.dump();
   cout << chc.clen() << endl;
+
+
+  cout << endl << "Regions" << endl;
+  Region r1;
+  r1.dump();
+
+  Region r2(Coord(4,2,6), Coord(1,5,3));
+  r2.dump();
+
+  Region r3(Coord(1,5,3), Coord(4,2,6));
+  r3.dump();
 
   return 0;
 }
